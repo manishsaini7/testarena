@@ -25,8 +25,8 @@ def get_products(db: Session, skip: int = 0, limit: int = 10):
 
 
 def create_product(db: Session, product: schemas.ProductCreate):
-    db_product = models.Product(name=product.name, description=product.description, price=product.price,
-                                quantity=product.quantity)
+    db_product = models.Product(name=product.name, description=product.description,
+                                price=product.price, quantity=product.quantity)
     db.add(db_product)
     db.commit()
     db.refresh(db_product)

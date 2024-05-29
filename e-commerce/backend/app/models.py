@@ -3,6 +3,7 @@ from sqlalchemy import Column, Integer, String, ForeignKey, Float
 from sqlalchemy.orm import relationship
 from app.database import Base
 
+
 class User(Base):
     __tablename__ = "users"
 
@@ -14,6 +15,7 @@ class User(Base):
     orders = relationship("Order", back_populates="user")
     cart_items = relationship("CartItem", back_populates="user")
 
+
 class Product(Base):
     __tablename__ = "products"
 
@@ -21,6 +23,8 @@ class Product(Base):
     name = Column(String, index=True)
     description = Column(String)
     price = Column(Float)
+    quantity = Column(Integer)
+
 
 class CartItem(Base):
     __tablename__ = "cart_items"
@@ -33,6 +37,7 @@ class CartItem(Base):
     user = relationship("User", back_populates="cart_items")
     product = relationship("Product")
 
+
 class Order(Base):
     __tablename__ = "orders"
 
@@ -42,6 +47,7 @@ class Order(Base):
 
     user = relationship("User", back_populates="orders")
     order_items = relationship("OrderItem", back_populates="order")
+
 
 class OrderItem(Base):
     __tablename__ = "order_items"
